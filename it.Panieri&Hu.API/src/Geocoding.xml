@@ -1,0 +1,72 @@
+<GeocodeResponse>
+	<status>OK</status>
+	<result>
+		<type>street_address</type>
+		<formatted_address>Via Franchini, 1, 31020 Lancenigo TV, Italia
+		</formatted_address>
+		<address_component>
+			<long_name>1</long_name>
+			<short_name>1</short_name>
+			<type>street_number</type>
+		</address_component>
+		<address_component>
+			<long_name>Via Franchini</long_name>
+			<short_name>Via Franchini</short_name>
+			<type>route</type>
+		</address_component>
+		<address_component>
+			<long_name>Lancenigo</long_name>
+			<short_name>Lancenigo</short_name>
+			<type>locality</type>
+			<type>political</type>
+		</address_component>
+		<address_component>
+			<long_name>Villorba</long_name>
+			<short_name>Villorba</short_name>
+			<type>administrative_area_level_3</type>
+			<type>political</type>
+		</address_component>
+		<address_component>
+			<long_name>Provincia di Treviso</long_name>
+			<short_name>TV</short_name>
+			<type>administrative_area_level_2</type>
+			<type>political</type>
+		</address_component>
+		<address_component>
+			<long_name>Veneto</long_name>
+			<short_name>Veneto</short_name>
+			<type>administrative_area_level_1</type>
+			<type>political</type>
+		</address_component>
+		<address_component>
+			<long_name>Italia</long_name>
+			<short_name>IT</short_name>
+			<type>country</type>
+			<type>political</type>
+		</address_component>
+		<address_component>
+			<long_name>31020</long_name>
+			<short_name>31020</short_name>
+			<type>postal_code</type>
+		</address_component>
+		<geometry>
+			<location>
+				<lat>45.7051570</lat>
+				<lng>12.2640820</lng>
+			</location>
+			<location_type>ROOFTOP</location_type>
+			<viewport>
+				<southwest>
+					<lat>45.7038080</lat>
+					<lng>12.2627330</lng>
+				</southwest>
+				<northeast>
+					<lat>45.7065060</lat>
+					<lng>12.2654310</lng>
+				</northeast>
+			</viewport>
+		</geometry>
+		<partial_match>true</partial_match>
+		<place_id>ChIJUw79F_9HeUcRVTk0hf0IpMI</place_id>
+	</result>
+</GeocodeResponse>

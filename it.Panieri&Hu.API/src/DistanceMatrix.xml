@@ -1,0 +1,20 @@
+<DistanceMatrixResponse>
+	<status>OK</status>
+	<origin_address>Strada di Sovernigo Porcellengo, 12, 31100 Treviso TV,
+		Italia</origin_address>
+	<destination_address>Via Munara, 25, 31055 Quinto di Treviso TV, Italia
+	</destination_address>
+	<row>
+		<element>
+			<status>OK</status>
+			<duration>
+				<value>656</value>
+				<text>11 min</text>
+			</duration>
+			<distance>
+				<value>6686</value>
+				<text>6,7 km</text>
+			</distance>
+		</element>
+	</row>
+</DistanceMatrixResponse>

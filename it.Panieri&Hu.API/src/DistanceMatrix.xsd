@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" version="1.0">
+  <xsd:element name="DistanceMatrixResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="status" type="xsd:string"/>
+        <xsd:element name="origin_address" type="xsd:string"/>
+        <xsd:element name="destination_address" type="xsd:string"/>
+        <xsd:element name="row">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="element">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="status" type="xsd:string"/>
+                    <xsd:element name="duration">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="value" type="xsd:int"/>
+                          <xsd:element name="text" type="xsd:string"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="distance">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="value" type="xsd:int"/>
+                          <xsd:element name="text" type="xsd:string"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
