@@ -128,10 +128,7 @@ public class Controller implements Initializable{
 		if(ok) {
 			risTab.setDisable(false);
 			tabPane.getSelectionModel().select(1);
-			txtStartAdd.setText("");
-			txtStartCiv.setText("");
-			txtEndAdd.setText("");
-			txtEndCiv.setText("");
+			
 			
 			//LOGICA:
 			//login?
@@ -226,6 +223,12 @@ public class Controller implements Initializable{
 			
 			System.out.println(loc_start);
 			System.out.println(loc_end);
+			
+			//GRAFICA:
+			txtStartAdd.setText("");
+			txtStartCiv.setText("");
+			txtEndAdd.setText("");
+			txtEndCiv.setText("");
 		}	
 	}
 
