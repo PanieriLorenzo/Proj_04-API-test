@@ -303,7 +303,7 @@ public class Controller implements Initializable{
 			txtStartAdd.setPromptText("Via");
 			txtStartCiv.setPromptText("Numero civico");
 			btnStartChange.setText("Utilizza coordinate geografiche");
-			txtStartCiv.setVisible(true);
+			txtStartCiv.setVisible(false);
 			startGeo = false;
 			
 			//LOGICA:
