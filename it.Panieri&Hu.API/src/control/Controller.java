@@ -122,7 +122,7 @@ public class Controller implements Initializable{
 		isEndCoord = false;
 		loc_start = new Location();
 		loc_end = new Location();
-		
+
 	}
 	
 	public void enter() {

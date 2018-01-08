@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.Controller">
    <children>
-      <JFXTabPane fx:id="tabPane" layoutX="-5.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <JFXTabPane fx:id="tabPane" layoutX="-5.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <Tab text="Inserimento">
                <content>
@@ -47,7 +47,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane fx:id="splitPane" dividerPositions="0.40211019929660025, 0.6002344665885111" layoutX="84.0" layoutY="63.0" prefHeight="376.0" prefWidth="855.0" stylesheets="@application.css" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane fx:id="splitPane" dividerPositions="0.40211019929660025, 0.6002344665885111" layoutX="84.0" layoutY="63.0" prefHeight="376.0" prefWidth="855.0" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="231.0" prefWidth="157.0">
                                  <children>
