@@ -23,9 +23,9 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <JFXTextField fx:id="txtStartAdd" focusColor="#d41800" layoutX="14.0" layoutY="162.0" prefHeight="25.0" prefWidth="140.0" promptText="Via" />
+                        <JFXTextField fx:id="txtStartAdd" focusColor="#d41800" layoutX="14.0" layoutY="162.0" prefHeight="25.0" prefWidth="140.0" promptText="Indirizzo" />
                         <JFXTextField fx:id="txtStartCiv" focusColor="#d41800" layoutX="186.0" layoutY="162.0" prefHeight="22.0" prefWidth="140.0" promptText="Numero civico" />
-                        <JFXTextField fx:id="txtEndAdd" focusColor="#d41800" layoutX="519.0" layoutY="162.0" prefHeight="25.0" prefWidth="140.0" promptText="Via" />
+                        <JFXTextField fx:id="txtEndAdd" focusColor="#d41800" layoutX="519.0" layoutY="162.0" prefHeight="25.0" prefWidth="140.0" promptText="Indirizzo" />
                         <JFXButton fx:id="btnAdd" buttonType="RAISED" disable="true" layoutX="366.0" layoutY="305.0" onMouseClicked="#enter" prefHeight="79.0" prefWidth="121.0" ripplerFill="WHITE" style="-fx-background-color: #D41800;" text="Inserisci" textFill="WHITE" />
                         <JFXButton fx:id="btnStartChange" layoutX="82.0" layoutY="227.0" onMouseClicked="#startChange" style="-fx-background-color: #D41800;" text="Utilizza coordinate geografiche" textFill="WHITE" />
                         <JFXButton fx:id="btnEndChange" layoutX="603.0" layoutY="227.0" onMouseClicked="#endChange" style="-fx-background-color: #D41800;" text="Utilizza coordinate geografiche" textFill="WHITE" />

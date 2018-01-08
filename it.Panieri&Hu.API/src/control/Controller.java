@@ -113,6 +113,9 @@ public class Controller implements Initializable{
 		btnEndIm.setText("");
 		btnEndIm.setGraphic(new ImageView(image));
 		
+		txtStartCiv.setVisible(false);
+		txtEndCiv.setVisible(false);
+		
 		//INIT LOGICA:
 		isStartAuto = false;
 		isStartCoord = false;
@@ -291,6 +294,7 @@ public class Controller implements Initializable{
 			txtStartAdd.setPromptText("Longitudine");
 			txtStartCiv.setPromptText("Latitudine");
 			btnStartChange.setText("Utilizza indirizzo");
+			txtStartCiv.setVisible(true);
 			startGeo = true;
 			
 			//LOGICA:
@@ -299,6 +303,7 @@ public class Controller implements Initializable{
 			txtStartAdd.setPromptText("Via");
 			txtStartCiv.setPromptText("Numero civico");
 			btnStartChange.setText("Utilizza coordinate geografiche");
+			txtStartCiv.setVisible(true);
 			startGeo = false;
 			
 			//LOGICA:
@@ -311,6 +316,7 @@ public class Controller implements Initializable{
 			txtEndAdd.setPromptText("Longitudine");
 			txtEndCiv.setPromptText("Latitudine");
 			btnEndChange.setText("Utilizza indirizzo");
+			txtEndCiv.setVisible(true);
 			endGeo = true;
 			
 			//LOGICA:
@@ -319,6 +325,7 @@ public class Controller implements Initializable{
 			txtEndAdd.setPromptText("Via");
 			txtEndCiv.setPromptText("Numero civico");
 			btnEndChange.setText("Utilizza coordinate geografiche");
+			txtEndCiv.setVisible(false);
 			endGeo = false;
 			
 			//LOGICA:
