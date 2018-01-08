@@ -86,6 +86,7 @@ public class Controller implements Initializable{
 	private ElevationResponse elevationResponse;
 	private DistanceMatrixResponse distanceMatrixResponse;
 	private URL file;
+	private double airDistance, elevDelta;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -213,7 +214,9 @@ public class Controller implements Initializable{
 			
 			//distance matrix:
 			try {
-				file = new URL("https://maps.googleapis.com/maps/api/distancematrix/xml?origins=" + loc_start.getLat() + "," + loc_start.getLng() + "&destinations=" + loc_end.getLat() + "," + loc_end.getLng() + "&mode=walking&language=it-IT&key=" + key);
+				file = new URL("https://maps.googleapis.com/maps/api/distancematrix/xml?origins=" + loc_start.getLat()
+						+ "," + loc_start.getLng() + "&destinations=" + loc_end.getLat() + "," + loc_end.getLng()
+						+ "&mode=walking&language=it-IT&key=" + key);
 				distanceMatrixResponse = (DistanceMatrixResponse) this.APIRequest(DistanceMatrixResponse.class);
 				matrix_distance = distanceMatrixResponse.getRow().getElement().getDistance().getText();
 				matrix_duration = distanceMatrixResponse.getRow().getElement().getDuration().getText();
@@ -223,6 +226,17 @@ public class Controller implements Initializable{
 			
 			System.out.println(loc_start);
 			System.out.println(loc_end);
+			
+			//calcolo distanza e dislivello:
+			airDistance = coordToDistance(Double.parseDouble(loc_start.getLat()),
+					Double.parseDouble(loc_start.getLng()), Double.parseDouble(loc_end.getLat()),
+					Double.parseDouble(loc_end.getLng()));
+			System.out.println("DEBUG air distance: " + airDistance);
+			elevDelta = Double.parseDouble(loc_end.getElev()) - Double.parseDouble(loc_start.getElev());
+			System.out.println("DEBUG dislivello: " + elevDelta);
+			
+			//stampa:
+			//insRis
 			
 			//GRAFICA:
 			txtStartAdd.setText("");
@@ -239,7 +253,7 @@ public class Controller implements Initializable{
 		return jaxbUnmarshaller.unmarshal(file);
 	}
 	
-	private double airDistance(double lon1, double lat1, double lon2, double lat2){
+	private double coordToDistance(double lon1, double lat1, double lon2, double lat2){
 		/**
 		 * CREDITS: Chuk, Stack overflow
 		 * https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
