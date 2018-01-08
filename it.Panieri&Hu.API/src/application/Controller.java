@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -41,7 +42,28 @@ public class Controller implements Initializable{
 	@FXML Button btnStartIm;
 	@FXML Button btnEndIm;
 	
+	/* Tab del tabPane */
+	
 	@FXML Tab imTab;
+	@FXML Tab risTab;
+	
+	/* Tab Risultati */
+	
+	@FXML Label risStart;
+	@FXML Label risEnd;
+	
+	@FXML TextField risStartAdd;
+	@FXML TextField risEndAdd;
+	@FXML TextField risStartLon;
+	@FXML TextField risEndLon;
+	@FXML TextField risStartLat;
+	@FXML TextField risEndLat;
+	@FXML TextField risStartEle;
+	@FXML TextField risEndEle;
+	@FXML TextField risDisAir;
+	@FXML TextField risDisReal;
+	@FXML TextField risTime;
+	@FXML TextField risDisl;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -54,7 +76,7 @@ public class Controller implements Initializable{
 		btnStartIm.setGraphic(new ImageView(image));
 		btnEndIm.setText("");
 		btnEndIm.setGraphic(new ImageView(image));
-
+		
 	}
 	
 	public void enter() {
@@ -75,7 +97,12 @@ public class Controller implements Initializable{
 		}
 		
 		if(ok) {
+			risTab.setDisable(false);
 			tabPane.getSelectionModel().select(1);
+			txtStartAdd.setText("");
+			txtStartCiv.setText("");
+			txtEndAdd.setText("");
+			txtEndCiv.setText("");
 		}	
 	}
 
@@ -83,10 +110,12 @@ public class Controller implements Initializable{
 		if(startGeo == false) {
 			txtStartAdd.setPromptText("Longitudine");
 			txtStartCiv.setPromptText("Latitudine");
+			btnStartChange.setText("Utilizza indirizzo");
 			startGeo = true;
 		}else {
 			txtStartAdd.setPromptText("Via");
 			txtStartCiv.setPromptText("Numero civico");
+			btnStartChange.setText("Utilizza coordinate geografiche");
 			startGeo = false;
 		}
 	}
@@ -95,10 +124,12 @@ public class Controller implements Initializable{
 		if(endGeo == false) {
 			txtEndAdd.setPromptText("Longitudine");
 			txtEndCiv.setPromptText("Latitudine");
+			btnEndChange.setText("Utilizza indirizzo");
 			endGeo = true;
 		}else {
 			txtEndAdd.setPromptText("Via");
 			txtEndCiv.setPromptText("Numero civico");
+			btnEndChange.setText("Utilizza coordinate geografiche");
 			endGeo = false;
 		}
 	}
@@ -124,5 +155,26 @@ public class Controller implements Initializable{
 	public void imOk() {
 		tabPane.getSelectionModel().select(1);
 		imTab.setDisable(true);
+	}
+	
+	private void insRisStart(String add, String lon, String lat, String ele) {
+		risStartAdd.setText(add);
+		risStartLon.setText(lat);
+		risStartLat.setText(lat);
+		risStartEle.setText(ele);
+	}
+	
+	private void insRisEnd(String add, String lon, String lat, String ele) {
+		risEndAdd.setText(add);
+		risEndLon.setText(lat);
+		risEndLat.setText(lat);
+		risEndEle.setText(ele);
+	}
+	
+	private void insRisGlob(String distAir, String distReal, String time, String disl) {
+		risDisAir.setText(distAir);
+		risDisReal.setText(distReal);
+		risTime.setText(time);
+		risDisl.setText(disl);
 	}
 }
