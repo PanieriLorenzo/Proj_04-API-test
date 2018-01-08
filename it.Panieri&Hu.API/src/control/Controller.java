@@ -34,6 +34,13 @@ import model.Location;
 
 public class Controller implements Initializable{
 	
+	/* Componenti login */
+	@FXML Label lblPass;
+	@FXML TextField txtPass;
+	@FXML Button btnJoin;
+	
+	/* Componenti inserimento */
+	
 	@FXML TextField txtStartAdd;
 	@FXML TextField txtStartCiv;
 	@FXML TextField txtEndAdd;
@@ -45,6 +52,10 @@ public class Controller implements Initializable{
 	@FXML Button btnStartChange;
 	@FXML Button btnEndChange;
 	@FXML ToggleButton toggleBtnMan;
+	
+	@FXML Button btnAdd;
+	
+	
 	@FXML TabPane tabPane;
 	@FXML SplitPane splitPane;
 	
@@ -87,6 +98,8 @@ public class Controller implements Initializable{
 	private DistanceMatrixResponse distanceMatrixResponse;
 	private URL file;
 	private double airDistance, elevDelta;
+	private String key;
+	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -134,8 +147,6 @@ public class Controller implements Initializable{
 			//LOGICA:
 			//login?
 
-			System.out.println("Inserisci la password: ");	//!DEBUG!
-			String key = XorCrypt.xor(Key.KEY_GOOGLE_DEFAULT,in.nextLine());
 			
 			
 			if(isStartAuto) {
@@ -363,5 +374,38 @@ public class Controller implements Initializable{
 		risDisReal.setText(distReal);
 		risTime.setText(time);
 		risDisl.setText(disl);
+	}
+	
+	public void joinPass() {
+		
+		try {
+			String tempKey = XorCrypt.xor(Key.KEY_GOOGLE_DEFAULT,txtPass.getText());
+			try {
+				file = new URL("https://maps.googleapis.com/maps/api/geocode/xml?address=" + loc_end.getAddress()+ "&key=" + tempKey);
+				GeocodeResponse testAPIKey = (GeocodeResponse) this.APIRequest(GeocodeResponse.class);
+				if(testAPIKey.getStatus().equals("REQUEST_DENIED")) {
+					Alert alert = new Alert(AlertType.ERROR, "Inserisci correttamente la password!" , ButtonType.OK);
+					txtPass.requestFocus();
+					alert.showAndWait();
+				}else {
+					if(testAPIKey.getStatus().equals("OK")) {
+						key = tempKey;
+						btnAdd.setDisable(false);
+						lblPass.setVisible(false);
+						txtPass.setVisible(false);
+						btnJoin.setVisible(false);
+					}
+				}
+			}catch (Exception e) {
+				System.out.println(e);
+			}
+		}catch (Exception e) {
+			Alert alert = new Alert(AlertType.ERROR, "Inserisci correttamente la password!" , ButtonType.OK);
+			txtPass.requestFocus();
+			alert.showAndWait();
+		}
+		
+		
+		
 	}
 }
