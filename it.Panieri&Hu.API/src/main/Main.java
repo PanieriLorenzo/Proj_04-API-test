@@ -1,4 +1,4 @@
-package application;
+package main;
 	
 import java.util.Optional;
 
@@ -20,7 +20,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("Grafica.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("../view/Grafica.fxml"));
 			Scene scene = new Scene(root,855,515);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Trek-Assist");
