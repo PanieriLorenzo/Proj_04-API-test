@@ -300,7 +300,7 @@ public class Controller implements Initializable{
 			//LOGICA:
 			isStartCoord = true;
 		}else {
-			txtStartAdd.setPromptText("Via");
+			txtStartAdd.setPromptText("Indirizzo");
 			txtStartCiv.setPromptText("Numero civico");
 			btnStartChange.setText("Utilizza coordinate geografiche");
 			txtStartCiv.setVisible(false);
@@ -322,7 +322,7 @@ public class Controller implements Initializable{
 			//LOGICA:
 			isEndCoord = true;
 		}else {
-			txtEndAdd.setPromptText("Via");
+			txtEndAdd.setPromptText("Indirizzo");
 			txtEndCiv.setPromptText("Numero civico");
 			btnEndChange.setText("Utilizza coordinate geografiche");
 			txtEndCiv.setVisible(false);
