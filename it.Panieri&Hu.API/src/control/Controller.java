@@ -103,6 +103,24 @@ public class Controller implements Initializable{
 			txtStartCiv.setText("");
 			txtEndAdd.setText("");
 			txtEndCiv.setText("");
+			//CODICE:
+			if(/* utilizzo indirizzo partenza */true) {
+				
+			}else if(/* utilizzo coordinate partenza*/true) {
+				
+			}else if(/* utilizzo IP partenza */true) {
+				
+			}else {
+				//ERRORE
+			}
+			
+			if(/* utilizzo indirizzo arrivo */true) {
+				
+			}else if(/* utilizzo coordinate arrivo */true) {
+				
+			}else {
+				//ERRORE
+			}
 		}	
 	}
 
