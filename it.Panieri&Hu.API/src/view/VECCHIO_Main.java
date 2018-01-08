@@ -16,13 +16,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 
 
-public class Main extends Application {
+public class VECCHIO_Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("Grafica.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/Grafica.fxml"));
 			Scene scene = new Scene(root,855,515);
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/view/application.css").toExternalForm());
 			primaryStage.setTitle("Trek-Assist");
 			primaryStage.setScene(scene);
 			primaryStage.show();

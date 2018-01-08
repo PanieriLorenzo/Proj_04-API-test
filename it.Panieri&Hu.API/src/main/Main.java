@@ -20,9 +20,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/Grafica.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/Grafica.fxml"));
 			Scene scene = new Scene(root,855,515);
-			scene.getStylesheets().add(getClass().getResource("../view/application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/view/application.css").toExternalForm());
 			primaryStage.setTitle("Trek-Assist");
 			primaryStage.setScene(scene);
 			primaryStage.show();

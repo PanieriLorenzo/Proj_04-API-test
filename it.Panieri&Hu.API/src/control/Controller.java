@@ -108,7 +108,7 @@ public class Controller implements Initializable{
 		startGeo = false;
 		endGeo = false;
 		btnStartIm.setText("");
-		Image image = new Image(getClass().getResourceAsStream("../view/photo.png"));
+		Image image = new Image(getClass().getResourceAsStream("/view/photo.png"));
 		btnStartIm.setGraphic(new ImageView(image));
 		btnEndIm.setText("");
 		btnEndIm.setGraphic(new ImageView(image));

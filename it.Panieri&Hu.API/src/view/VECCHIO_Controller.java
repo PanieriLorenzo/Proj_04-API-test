@@ -23,7 +23,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class Controller implements Initializable{
+public class VECCHIO_Controller implements Initializable{
 	
 	@FXML TextField txtStartAdd;
 	@FXML TextField txtStartCiv;
