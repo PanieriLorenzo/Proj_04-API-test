@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="response">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="query_status">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="query_status_code" type="xsd:string" />
+              <xsd:element name="query_status_description" type="xsd:string" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="ip_address" type="xsd:string" />
+        <xsd:element name="geolocation_data">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="continent_code" type="xsd:string" />
+              <xsd:element name="continent_name" type="xsd:string" />
+              <xsd:element name="country_code_iso3166alpha2" type="xsd:string" />
+              <xsd:element name="country_code_iso3166alpha3" type="xsd:string" />
+              <xsd:element name="country_code_iso3166numeric" type="xsd:int" />
+              <xsd:element name="country_code_fips10-4" type="xsd:string" />
+              <xsd:element name="country_name" type="xsd:string" />
+              <xsd:element name="region_code" type="xsd:string" />
+              <xsd:element name="region_name" type="xsd:string" />
+              <xsd:element name="city" type="xsd:string" />
+              <xsd:element name="postal_code" type="xsd:int" />
+              <xsd:element name="metro_code" type="xsd:string" />
+              <xsd:element name="area_code" type="xsd:string" />
+              <xsd:element name="latitude" type="xsd:decimal" />
+              <xsd:element name="longitude" type="xsd:decimal" />
+              <xsd:element name="isp" type="xsd:string" />
+              <xsd:element name="organization" type="xsd:string" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

@@ -29,7 +29,9 @@ import javafx.scene.layout.AnchorPane;
 import model.DistanceMatrixResponse;
 import model.ElevationResponse;
 import model.GeocodeResponse;
+import model.IPResponse;
 import model.Key;
+import model.LocateResponse;
 import model.Location;
 
 public class Controller implements Initializable{
@@ -96,6 +98,8 @@ public class Controller implements Initializable{
 	private GeocodeResponse geocodeResponse;
 	private ElevationResponse elevationResponse;
 	private DistanceMatrixResponse distanceMatrixResponse;
+	private IPResponse ipResponse;
+	private LocateResponse locateResponse;
 	private URL file;
 	private double airDistance, elevDelta;
 	private String key;
@@ -143,27 +147,22 @@ public class Controller implements Initializable{
 		}
 		
 		if(ok) {
-			risTab.setDisable(false);
-			tabPane.getSelectionModel().select(1);
 			
 			
 			//LOGICA:
-			//login?
-
 			
-			
-			if(isStartAuto) {
-				System.out.println("Da Start Auto...");
-				loc_start.setLat(/* prendi con ip */null);
-				loc_start.setLng(/* prendi con ip */null);
+//			if(isStartAuto) {
+//				System.out.println("Da Start Auto...");
+//				loc_start.setLat(/* prendi con ip */null);
+//				loc_start.setLng(/* prendi con ip */null);
 				
 				//no geocoding
 				
 				
-			}else if(isStartCoord) {
+			/*}else*/ if(isStartCoord) {
 				System.out.println("Da Start Coord...");
-				loc_start.setLat(txtStartAdd.getText());
-				loc_start.setLng(txtStartCiv.getText());
+				loc_start.setLng(txtStartAdd.getText());
+				loc_start.setLat(txtStartCiv.getText());
 				
 				//no geocoding
 				
@@ -183,14 +182,17 @@ public class Controller implements Initializable{
 					loc_start.setLng(geocodeResponse.getResult().getGeometry().getLocation().getLng().toString());
 				}catch (Exception e) {
 					e.printStackTrace();
+					ok = false;
+					Alert alert = new Alert(AlertType.ERROR, "Inserisci correttamente gli indirizzi!" , ButtonType.OK);
+					alert.showAndWait();
 				}
 				
 			}
 			
 			if(isEndCoord) {
 				System.out.println("...a End Coord");
-				loc_end.setLat(txtEndAdd.getText());
-				loc_end.setLng(txtEndCiv.getText());
+				loc_end.setLng(txtEndAdd.getText());
+				loc_end.setLat(txtEndCiv.getText());
 				
 				//no geocoding
 				
@@ -208,51 +210,62 @@ public class Controller implements Initializable{
 					loc_end.setLng(geocodeResponse.getResult().getGeometry().getLocation().getLng().toString());
 				}catch (Exception e) {
 					e.printStackTrace();
+					ok = false;
+					Alert alert = new Alert(AlertType.ERROR, "Inserisci correttamente gli indirizzi!" , ButtonType.OK);
+					alert.showAndWait();
 				}
 			}
-			
-			//elevazioni:
-			try {
-				file = new URL("https://maps.googleapis.com/maps/api/elevation/xml?locations=" + loc_start.getLat()
-						+ "," + loc_start.getLng() + "&key=" + key);
-				elevationResponse = (ElevationResponse) this.APIRequest(ElevationResponse.class);
-				loc_start.setElev(elevationResponse.getResult().getElevation().toString());
+			if(ok) {
+				// elevazioni:
+				try {
+					file = new URL("https://maps.googleapis.com/maps/api/elevation/xml?locations=" + loc_start.getLat()
+							+ "," + loc_start.getLng() + "&key=" + key);
+					elevationResponse = (ElevationResponse) this.APIRequest(ElevationResponse.class);
+					loc_start.setElev(elevationResponse.getResult().getElevation().toString());
 
-				file = new URL("https://maps.googleapis.com/maps/api/elevation/xml?locations=" + loc_end.getLat() + ","
-						+ loc_end.getLng() + "&key=" + key);
-				elevationResponse = (ElevationResponse) this.APIRequest(ElevationResponse.class);
-				loc_end.setElev(elevationResponse.getResult().getElevation().toString());
-			}catch(Exception e) {
-				e.printStackTrace();
+					file = new URL("https://maps.googleapis.com/maps/api/elevation/xml?locations=" + loc_end.getLat()
+							+ "," + loc_end.getLng() + "&key=" + key);
+					elevationResponse = (ElevationResponse) this.APIRequest(ElevationResponse.class);
+					loc_end.setElev(elevationResponse.getResult().getElevation().toString());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				// distance matrix:
+				try {
+					file = new URL("https://maps.googleapis.com/maps/api/distancematrix/xml?origins="
+							+ loc_start.getLat() + "," + loc_start.getLng() + "&destinations=" + loc_end.getLat() + ","
+							+ loc_end.getLng() + "&mode=walking&language=it-IT&key=" + key);
+					distanceMatrixResponse = (DistanceMatrixResponse) this.APIRequest(DistanceMatrixResponse.class);
+					matrix_distance = distanceMatrixResponse.getRow().getElement().getDistance().getText();
+					matrix_duration = distanceMatrixResponse.getRow().getElement().getDuration().getText();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				System.out.println(loc_start);
+				System.out.println(loc_end);
+
+				// calcolo distanza e dislivello:
+				airDistance = coordToDistance(Double.parseDouble(loc_start.getLat()),
+						Double.parseDouble(loc_start.getLng()), Double.parseDouble(loc_end.getLat()),
+						Double.parseDouble(loc_end.getLng()));
+				System.out.println("DEBUG air distance: " + airDistance);
+				elevDelta = Double.parseDouble(loc_end.getElev()) - Double.parseDouble(loc_start.getElev());
+				System.out.println("DEBUG dislivello: " + elevDelta);
+				
+				//stampa:
+				insRisStart(loc_start.getAddress(), loc_start.getLng(), loc_start.getLat(), loc_start.getElev());
+				insRisEnd(loc_end.getAddress(), loc_end.getLng(), loc_end.getLat(), loc_end.getElev());
+				insRisGlob(""+airDistance, matrix_distance, matrix_duration, ""+elevDelta);
+
 			}
 			
-			//distance matrix:
-			try {
-				file = new URL("https://maps.googleapis.com/maps/api/distancematrix/xml?origins=" + loc_start.getLat()
-						+ "," + loc_start.getLng() + "&destinations=" + loc_end.getLat() + "," + loc_end.getLng()
-						+ "&mode=walking&language=it-IT&key=" + key);
-				distanceMatrixResponse = (DistanceMatrixResponse) this.APIRequest(DistanceMatrixResponse.class);
-				matrix_distance = distanceMatrixResponse.getRow().getElement().getDistance().getText();
-				matrix_duration = distanceMatrixResponse.getRow().getElement().getDuration().getText();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-			
-			System.out.println(loc_start);
-			System.out.println(loc_end);
-			
-			//calcolo distanza e dislivello:
-			airDistance = coordToDistance(Double.parseDouble(loc_start.getLat()),
-					Double.parseDouble(loc_start.getLng()), Double.parseDouble(loc_end.getLat()),
-					Double.parseDouble(loc_end.getLng()));
-			System.out.println("DEBUG air distance: " + airDistance);
-			elevDelta = Double.parseDouble(loc_end.getElev()) - Double.parseDouble(loc_start.getElev());
-			System.out.println("DEBUG dislivello: " + elevDelta);
-			
-			//stampa:
-			//insRis
 			
 			//GRAFICA:
+
+			risTab.setDisable(false);
+			tabPane.getSelectionModel().select(1);
 			txtStartAdd.setText("");
 			txtStartCiv.setText("");
 			txtEndAdd.setText("");
@@ -337,13 +350,47 @@ public class Controller implements Initializable{
 		if(toggleBtnMan.isSelected()) {
 			toggleBtnMan.setText("Automatico");
 			
+			txtStartAdd.setPromptText("Longitudine");
+			txtStartCiv.setPromptText("Latitudine");
+			btnStartChange.setText("Utilizza indirizzo");
+			txtStartCiv.setVisible(true);
+			startGeo = true;
+			
+			txtStartAdd.setDisable(true);
+			txtStartCiv.setDisable(true);
+			
 			//LOGICA:
-			isStartAuto = true;
+			isStartCoord = true;
+			try {
+				file = new URL("http://ip-api.com/xml");
+				ipResponse = (IPResponse) this.APIRequest(IPResponse.class);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			try {
+				file = new URL("http://api.eurekapi.com/iplocation/v1.8/locateip?key=SAKD8749XKG3435UK8YZ&ip=" + ipResponse.getQuery() + "&format=XML");
+				locateResponse = (LocateResponse) this.APIRequest(LocateResponse.class);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			txtStartAdd.setText("" + locateResponse.getGeolocationData().getLongitude());
+			txtStartCiv.setText("" + locateResponse.getGeolocationData().getLatitude());
 		}else {
 			toggleBtnMan.setText("Manuale");
 			
+			txtStartAdd.setDisable(false);
+			txtStartCiv.setDisable(false);
+			
+			txtStartAdd.setPromptText("Indirizzo");
+			txtStartCiv.setPromptText("Numero civico");
+			btnStartChange.setText("Utilizza coordinate geografiche");
+			txtStartCiv.setVisible(false);
+			startGeo = false;
+			
 			//LOGICA:
-			isStartAuto = false;
+			isStartCoord = false;
 		}
 	}
 	

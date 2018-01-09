@@ -1,0 +1,27 @@
+<response>
+	<query_status>
+		<query_status_code>OK</query_status_code>
+		<query_status_description>Query successfully performed.
+		</query_status_description>
+	</query_status>
+	<ip_address>79.54.3.231</ip_address>
+	<geolocation_data>
+		<continent_code>EU</continent_code>
+		<continent_name>Europe</continent_name>
+		<country_code_iso3166alpha2>IT</country_code_iso3166alpha2>
+		<country_code_iso3166alpha3>ITA</country_code_iso3166alpha3>
+		<country_code_iso3166numeric>380</country_code_iso3166numeric>
+		<country_code_fips10-4>IT</country_code_fips10-4>
+		<country_name>Italy</country_name>
+		<region_code>IT20</region_code>
+		<region_name>Veneto</region_name>
+		<city>Conegliano</city>
+		<postal_code>31015</postal_code>
+		<metro_code>-</metro_code>
+		<area_code>-</area_code>
+		<latitude>45.8852</latitude>
+		<longitude>12.2689</longitude>
+		<isp>Telecom Italia</isp>
+		<organization>Telecom Italia</organization>
+	</geolocation_data>
+</response>

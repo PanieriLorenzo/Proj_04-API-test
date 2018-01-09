@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query>
+	<status>success</status>
+	<country>Italy</country>
+	<countryCode>IT</countryCode>
+	<region>34</region>
+	<regionName>Veneto</regionName>
+	<city>Conegliano</city>
+	<zip>31015</zip>
+	<lat>45.8906</lat>
+	<lon>12.2925</lon>
+	<timezone>Europe/Rome</timezone>
+	<isp>Telecom Italia</isp>
+	<org>Telecom Italia</org>
+	<as>AS3269 Telecom Italia</as>
+	<query>79.54.3.231</query>
+</query>

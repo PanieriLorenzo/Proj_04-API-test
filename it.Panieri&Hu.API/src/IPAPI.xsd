@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="query">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="status" type="xsd:string" />
+        <xsd:element name="country" type="xsd:string" />
+        <xsd:element name="countryCode" type="xsd:string" />
+        <xsd:element name="region" type="xsd:int" />
+        <xsd:element name="regionName" type="xsd:string" />
+        <xsd:element name="city" type="xsd:string" />
+        <xsd:element name="zip" type="xsd:int" />
+        <xsd:element name="lat" type="xsd:decimal" />
+        <xsd:element name="lon" type="xsd:decimal" />
+        <xsd:element name="timezone" type="xsd:string" />
+        <xsd:element name="isp" type="xsd:string" />
+        <xsd:element name="org" type="xsd:string" />
+        <xsd:element name="as" type="xsd:string" />
+        <xsd:element name="query" type="xsd:string" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
