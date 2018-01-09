@@ -87,6 +87,10 @@ public class Controller implements Initializable{
 	@FXML TextField risTime;
 	@FXML TextField risDisl;
 	
+	/* Tab Immagini */
+	@FXML Label lblIm1;
+	@FXML Label lblIm2;
+	
 	//ATTRIBUTI LOGICA:
 	Scanner in = new Scanner(System.in);	//!DEBUG!
 	private boolean isStartAuto, isStartCoord, isEndCoord;
