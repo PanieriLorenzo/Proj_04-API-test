@@ -5,11 +5,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -406,6 +408,12 @@ public class Controller implements Initializable{
 	public void endIm() {
 		imTab.setDisable(false);
 		tabPane.getSelectionModel().select(2);
+		try {
+		    URL url = new URL("https://maps.googleapis.com/maps/api/streetview?location=" + loc_end.getLat() + "," + loc_end.getLng() + "&size=368x269" + "&fov=100" + "&key=" + key);
+		    lblIm1.setGraphic(SwingFXUtils.toFXImage(ImageIO.read(url), null));
+		    myImageView.setImage(image);
+		} catch (IOException e) {
+		}
 	}
 	
 	public void imOk() {
