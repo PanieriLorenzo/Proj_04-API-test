@@ -63,7 +63,6 @@ public class Controller implements Initializable{
 	@FXML TabPane tabPane;
 	@FXML SplitPane splitPane;
 	
-	@FXML Button btnStartIm;
 	@FXML Button btnEndIm;
 	
 	/* Tab del tabPane */
@@ -117,11 +116,10 @@ public class Controller implements Initializable{
 		Platform.runLater(()->splitPane.lookupAll(".split-pane-divider").stream().forEach(div ->  div.setMouseTransparent(true) ));
 		startGeo = false;
 		endGeo = false;
-		btnStartIm.setText("");
-		Image image = new Image(getClass().getResourceAsStream("/view/photo.png"));
-		btnStartIm.setGraphic(new ImageView(image));
 		btnEndIm.setText("");
+		Image image = new Image(getClass().getResourceAsStream("/view/photo.png"));
 		btnEndIm.setGraphic(new ImageView(image));
+
 		
 		txtStartCiv.setVisible(false);
 		txtEndCiv.setVisible(false);
@@ -138,7 +136,7 @@ public class Controller implements Initializable{
 	public void enter() {
 		boolean ok = true;
 		
-		if((txtStartAdd.getText().equals("") || txtStartCiv.getText().equals("")) && !toggleBtnMan.isSelected()) {
+		/*if((txtStartAdd.getText().equals("") || txtStartCiv.getText().equals("")) && !toggleBtnMan.isSelected()) {
 			ok = false;
 			Alert alert = new Alert(AlertType.ERROR, "Inserisci correttamente gli indirizzi!" , ButtonType.OK);
 			txtStartAdd.requestFocus();
@@ -150,7 +148,7 @@ public class Controller implements Initializable{
 				txtEndAdd.requestFocus();
 				alert.showAndWait();
 			}
-		}
+		}*/
 		
 		if(ok) {
 			
@@ -187,7 +185,7 @@ public class Controller implements Initializable{
 					loc_start.setLat(geocodeResponse.getResult().getGeometry().getLocation().getLat().toString());
 					loc_start.setLng(geocodeResponse.getResult().getGeometry().getLocation().getLng().toString());
 				}catch (Exception e) {
-					e.printStackTrace();
+
 					ok = false;
 					Alert alert = new Alert(AlertType.ERROR, "Inserisci correttamente gli indirizzi!" , ButtonType.OK);
 					alert.showAndWait();
@@ -215,7 +213,7 @@ public class Controller implements Initializable{
 					loc_end.setLat(geocodeResponse.getResult().getGeometry().getLocation().getLat().toString());
 					loc_end.setLng(geocodeResponse.getResult().getGeometry().getLocation().getLng().toString());
 				}catch (Exception e) {
-					e.printStackTrace();
+
 					ok = false;
 					Alert alert = new Alert(AlertType.ERROR, "Inserisci correttamente gli indirizzi!" , ButtonType.OK);
 					alert.showAndWait();
@@ -400,19 +398,24 @@ public class Controller implements Initializable{
 		}
 	}
 	
-	public void startIm() {
-		imTab.setDisable(false);
-		tabPane.getSelectionModel().select(2);
-	}
 	
 	public void endIm() {
 		imTab.setDisable(false);
 		tabPane.getSelectionModel().select(2);
+		ImageView myImageView = new ImageView();
+		Image image;
 		try {
-		    URL url = new URL("https://maps.googleapis.com/maps/api/streetview?location=" + loc_end.getLat() + "," + loc_end.getLng() + "&size=368x269" + "&fov=100" + "&key=" + key);
-		    lblIm1.setGraphic(SwingFXUtils.toFXImage(ImageIO.read(url), null));
-		    myImageView.setImage(image);
-		} catch (IOException e) {
+		    //URL url = new URL("https://maps.googleapis.com/maps/api/streetview?location=" + loc_end.getLat() + "," + loc_end.getLng() + "&size=368x269" + "&fov=100" + "&key=" + key);
+			String path = "https://maps.googleapis.com/maps/api/streetview?location=" + loc_end.getLat() + "," + loc_end.getLng() + "&size=368x269&heading=0" + "&fov=100" + "&key=" + key;
+		    image = new Image(path);
+		    myImageView = new ImageView(image);
+		    lblIm1.setGraphic(myImageView);
+		    path = "https://maps.googleapis.com/maps/api/streetview?location=" + loc_end.getLat() + "," + loc_end.getLng() + "&size=368x269&heading=180" + "&fov=100" + "&key=" + key;
+		    image = new Image(path);
+		    myImageView = new ImageView(image);
+		    lblIm2.setGraphic(myImageView);
+		} catch (Exception e) {
+			
 		}
 	}
 	

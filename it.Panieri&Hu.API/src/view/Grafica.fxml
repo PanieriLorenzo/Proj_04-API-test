@@ -47,7 +47,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane fx:id="splitPane" dividerPositions="0.40211019929660025, 0.6002344665885111" layoutX="84.0" layoutY="63.0" prefHeight="376.0" prefWidth="855.0" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane fx:id="splitPane" dividerPositions="0.40211019929660025, 0.6002344665885111" layoutX="84.0" layoutY="63.0" prefHeight="340.0" prefWidth="857.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="231.0" prefWidth="157.0">
                                  <children>
@@ -60,7 +60,6 @@
                                     <JFXTextField fx:id="risStartLon" editable="false" focusColor="#d41800" layoutX="54.0" layoutY="162.0" prefHeight="21.0" prefWidth="215.0" />
                                     <JFXTextField fx:id="risStartLat" editable="false" focusColor="#d41800" layoutX="54.0" layoutY="228.0" prefHeight="21.0" prefWidth="215.0" />
                                     <JFXTextField fx:id="risStartEle" editable="false" focusColor="#d41800" layoutX="54.0" layoutY="292.0" prefHeight="21.0" prefWidth="215.0" />
-                                    <JFXButton fx:id="btnStartIm" layoutX="136.0" layoutY="335.0" onMouseClicked="#startIm" style="-fx-background-color: #D41800;" textFill="WHITE" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -94,7 +93,6 @@
                                     <JFXTextField fx:id="risEndLon" editable="false" focusColor="#d41800" layoutX="60.0" layoutY="162.0" prefHeight="21.0" prefWidth="215.0" />
                                     <JFXTextField fx:id="risEndLat" editable="false" focusColor="#d41800" layoutX="60.0" layoutY="232.0" prefHeight="21.0" prefWidth="215.0" />
                                     <JFXTextField fx:id="risEndEle" editable="false" focusColor="#d41800" layoutX="60.0" layoutY="294.0" prefHeight="21.0" prefWidth="215.0" />
-                                    <JFXButton fx:id="btnEndIm" layoutX="141.0" layoutY="335.0" onMouseClicked="#endIm" style="-fx-background-color: #D41800;" textFill="WHITE" />
                                  </children>
                               </AnchorPane>
                           </items>
@@ -123,6 +121,7 @@
                            </font>
                         </Label>
                         <JFXTextField fx:id="risDisl" editable="false" focusColor="#d41800" layoutX="659.0" layoutY="418.0" prefHeight="24.0" prefWidth="178.0" />
+                        <JFXButton fx:id="btnEndIm" layoutX="402.0" layoutY="351.0" onMouseClicked="#endIm" style="-fx-background-color: #D41800;" textFill="WHITE" />
                      </children>
                   </AnchorPane>
               </content>
@@ -136,7 +135,7 @@
                               <Font size="18.0" />
                            </font>
                         </JFXButton>
-                        <Label fx:id="lblIm1" layoutX="14.0" layoutY="14.0" prefHeight="270.0" prefWidth="369.0" text="Label" />
+                        <Label fx:id="lblIm1" layoutX="14.0" layoutY="14.0" prefHeight="269.0" prefWidth="368.0" text="Label" />
                         <Label fx:id="lblIm2" layoutX="472.0" layoutY="14.0" prefHeight="270.0" prefWidth="369.0" text="Label" />
                      </children>
                   </AnchorPane>
