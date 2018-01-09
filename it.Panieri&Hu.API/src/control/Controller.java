@@ -12,6 +12,7 @@ import javax.xml.bind.Unmarshaller;
 
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -27,6 +28,8 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import model.DistanceMatrixResponse;
 import model.ElevationResponse;
@@ -120,7 +123,7 @@ public class Controller implements Initializable{
 		Image image = new Image(getClass().getResourceAsStream("/view/photo.png"));
 		btnEndIm.setGraphic(new ImageView(image));
 
-		
+
 		txtStartCiv.setVisible(false);
 		txtEndCiv.setVisible(false);
 		
@@ -165,8 +168,16 @@ public class Controller implements Initializable{
 				
 			/*}else*/ if(isStartCoord) {
 				System.out.println("Da Start Coord...");
-				loc_start.setLng(txtStartAdd.getText());
-				loc_start.setLat(txtStartCiv.getText());
+				if(txtStartAdd.getText().equals("") || txtStartCiv.getText().equals("")) {
+					ok = false;
+					txtStartAdd.requestFocus();
+					Alert alert = new Alert(AlertType.ERROR, "Inserisci correttamente le coordinate" , ButtonType.OK);
+					alert.showAndWait();
+				}else {
+					loc_start.setLng(txtStartAdd.getText());
+					loc_start.setLat(txtStartCiv.getText());
+				}
+				
 				
 				//no geocoding
 				
@@ -187,21 +198,29 @@ public class Controller implements Initializable{
 				}catch (Exception e) {
 
 					ok = false;
+					txtStartAdd.requestFocus();
 					Alert alert = new Alert(AlertType.ERROR, "Inserisci correttamente gli indirizzi!" , ButtonType.OK);
 					alert.showAndWait();
 				}
 				
 			}
-			
+			if(ok) {
 			if(isEndCoord) {
 				System.out.println("...a End Coord");
-				loc_end.setLng(txtEndAdd.getText());
-				loc_end.setLat(txtEndCiv.getText());
-				
+				if(txtEndAdd.getText().equals("") || txtEndCiv.getText().equals("")) {
+					ok = false;
+					txtEndAdd.requestFocus();
+					Alert alert = new Alert(AlertType.ERROR, "Inserisci correttamente le coordinate" , ButtonType.OK);
+					alert.showAndWait();
+				}else {
+					loc_end.setLng(txtEndAdd.getText());
+					loc_end.setLat(txtEndCiv.getText());
+				}
 				//no geocoding
 				
 			}else {
 				System.out.println("...a End Indirizzo");
+
 				loc_end.setAddress(txtEndAdd.getText()+" "+txtEndCiv.getText());
 				loc_end.setAddress(loc_end.getAddress().replaceAll(" ", "+"));
 				
@@ -215,6 +234,7 @@ public class Controller implements Initializable{
 				}catch (Exception e) {
 
 					ok = false;
+					txtEndAdd.requestFocus();
 					Alert alert = new Alert(AlertType.ERROR, "Inserisci correttamente gli indirizzi!" , ButtonType.OK);
 					alert.showAndWait();
 				}
@@ -259,21 +279,41 @@ public class Controller implements Initializable{
 				System.out.println("DEBUG dislivello: " + elevDelta);
 				
 				//stampa:
-				insRisStart(loc_start.getAddress(), loc_start.getLng(), loc_start.getLat(), loc_start.getElev());
-				insRisEnd(loc_end.getAddress(), loc_end.getLng(), loc_end.getLat(), loc_end.getElev());
+				String tempAdd1;
+				String tempAdd2;
+				
+				if(!isStartCoord) {
+					tempAdd1 = loc_start.getAddress().replaceAll("\\+", " ");
+				}else {
+					tempAdd1 = "";
+				}
+				
+				if(!isEndCoord) {
+					tempAdd2 = loc_end.getAddress().replaceAll("\\+", " ");
+				}else {
+					tempAdd2 = "";
+				}
+				
+				insRisStart(tempAdd1, loc_start.getLng(), loc_start.getLat(), loc_start.getElev());
+				insRisEnd(tempAdd2, loc_end.getLng(), loc_end.getLat(), loc_end.getElev());
 				insRisGlob(""+airDistance, matrix_distance, matrix_duration, ""+elevDelta);
-
+				risTab.setDisable(false);
+				tabPane.getSelectionModel().select(1);
+			}
 			}
 			
 			
 			//GRAFICA:
 
-			risTab.setDisable(false);
-			tabPane.getSelectionModel().select(1);
-			txtStartAdd.setText("");
-			txtStartCiv.setText("");
+			if(startGeo) {
+				this.changeManAuto();
+			}else {
+				txtStartAdd.setText("");
+				txtStartCiv.setText("");
+			}
 			txtEndAdd.setText("");
 			txtEndCiv.setText("");
+			//imTab.setDisable(true);
 		}	
 	}
 
@@ -346,7 +386,7 @@ public class Controller implements Initializable{
 			endGeo = false;
 			
 			//LOGICA:
-			isEndCoord = true;
+			isEndCoord = false;
 		}
 	}
 	
@@ -362,6 +402,7 @@ public class Controller implements Initializable{
 			
 			txtStartAdd.setDisable(true);
 			txtStartCiv.setDisable(true);
+			btnStartChange.setDisable(true);
 			
 			//LOGICA:
 			isStartCoord = true;
@@ -386,7 +427,10 @@ public class Controller implements Initializable{
 			
 			txtStartAdd.setDisable(false);
 			txtStartCiv.setDisable(false);
+			btnStartChange.setDisable(false);
 			
+			txtStartAdd.setText("");
+			txtStartCiv.setText("");
 			txtStartAdd.setPromptText("Indirizzo");
 			txtStartCiv.setPromptText("Numero civico");
 			btnStartChange.setText("Utilizza coordinate geografiche");
@@ -426,14 +470,14 @@ public class Controller implements Initializable{
 	
 	private void insRisStart(String add, String lon, String lat, String ele) {
 		risStartAdd.setText(add);
-		risStartLon.setText(lat);
+		risStartLon.setText(lon);
 		risStartLat.setText(lat);
 		risStartEle.setText(ele);
 	}
 	
 	private void insRisEnd(String add, String lon, String lat, String ele) {
 		risEndAdd.setText(add);
-		risEndLon.setText(lat);
+		risEndLon.setText(lon);
 		risEndLat.setText(lat);
 		risEndEle.setText(ele);
 	}
@@ -477,4 +521,12 @@ public class Controller implements Initializable{
 		
 		
 	}
+	
+	public void tabChange() {
+		if(!tabPane.getSelectionModel().isSelected(2)) {
+			imTab.setDisable(true);
+		}
+	}
+	
+
 }

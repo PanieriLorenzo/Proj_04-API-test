@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.Controller">
    <children>
-      <JFXTabPane fx:id="tabPane" layoutX="-5.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <JFXTabPane fx:id="tabPane" layoutX="-5.0" onMouseClicked="#tabChange" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <Tab text="Inserimento">
                <content>
@@ -56,10 +56,10 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="risStartAdd" editable="false" focusColor="#d41800" layoutX="54.0" layoutY="91.0" prefHeight="21.0" prefWidth="215.0" />
-                                    <JFXTextField fx:id="risStartLon" editable="false" focusColor="#d41800" layoutX="54.0" layoutY="162.0" prefHeight="21.0" prefWidth="215.0" />
-                                    <JFXTextField fx:id="risStartLat" editable="false" focusColor="#d41800" layoutX="54.0" layoutY="228.0" prefHeight="21.0" prefWidth="215.0" />
-                                    <JFXTextField fx:id="risStartEle" editable="false" focusColor="#d41800" layoutX="54.0" layoutY="292.0" prefHeight="21.0" prefWidth="215.0" />
+                                    <JFXTextField fx:id="risStartAdd" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="54.0" layoutY="91.0" prefHeight="21.0" prefWidth="215.0" />
+                                    <JFXTextField fx:id="risStartLon" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="54.0" layoutY="162.0" prefHeight="21.0" prefWidth="215.0" />
+                                    <JFXTextField fx:id="risStartLat" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="54.0" layoutY="228.0" prefHeight="21.0" prefWidth="215.0" />
+                                    <JFXTextField fx:id="risStartEle" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="54.0" layoutY="292.0" prefHeight="21.0" prefWidth="215.0" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -89,10 +89,10 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="risEndAdd" editable="false" focusColor="#d41800" layoutX="60.0" layoutY="92.0" prefHeight="21.0" prefWidth="215.0" />
-                                    <JFXTextField fx:id="risEndLon" editable="false" focusColor="#d41800" layoutX="60.0" layoutY="162.0" prefHeight="21.0" prefWidth="215.0" />
-                                    <JFXTextField fx:id="risEndLat" editable="false" focusColor="#d41800" layoutX="60.0" layoutY="232.0" prefHeight="21.0" prefWidth="215.0" />
-                                    <JFXTextField fx:id="risEndEle" editable="false" focusColor="#d41800" layoutX="60.0" layoutY="294.0" prefHeight="21.0" prefWidth="215.0" />
+                                    <JFXTextField fx:id="risEndAdd" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="60.0" layoutY="92.0" prefHeight="21.0" prefWidth="215.0" />
+                                    <JFXTextField fx:id="risEndLon" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="60.0" layoutY="162.0" prefHeight="21.0" prefWidth="215.0" />
+                                    <JFXTextField fx:id="risEndLat" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="60.0" layoutY="232.0" prefHeight="21.0" prefWidth="215.0" />
+                                    <JFXTextField fx:id="risEndEle" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="60.0" layoutY="294.0" prefHeight="21.0" prefWidth="215.0" />
                                  </children>
                               </AnchorPane>
                           </items>
@@ -102,7 +102,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <JFXTextField fx:id="risDisAir" editable="false" focusColor="#d41800" layoutX="7.0" layoutY="418.0" prefHeight="24.0" prefWidth="178.0" />
+                        <JFXTextField fx:id="risDisAir" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="7.0" layoutY="418.0" prefHeight="24.0" prefWidth="178.0" />
                         <Label layoutX="249.0" layoutY="383.0" text="Distanza-reale">
                            <font>
                               <Font size="24.0" />
@@ -113,14 +113,14 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <JFXTextField fx:id="risDisReal" editable="false" focusColor="#d41800" layoutX="235.0" layoutY="418.0" prefHeight="24.0" prefWidth="178.0" />
-                        <JFXTextField fx:id="risTime" editable="false" focusColor="#d41800" layoutX="446.0" layoutY="418.0" prefHeight="24.0" prefWidth="178.0" />
+                        <JFXTextField fx:id="risDisReal" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="235.0" layoutY="418.0" prefHeight="24.0" prefWidth="178.0" />
+                        <JFXTextField fx:id="risTime" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="446.0" layoutY="418.0" prefHeight="24.0" prefWidth="178.0" />
                         <Label layoutX="701.0" layoutY="383.0" text="Dislivello">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <JFXTextField fx:id="risDisl" editable="false" focusColor="#d41800" layoutX="659.0" layoutY="418.0" prefHeight="24.0" prefWidth="178.0" />
+                        <JFXTextField fx:id="risDisl" alignment="CENTER" editable="false" focusColor="#d41800" layoutX="659.0" layoutY="418.0" prefHeight="24.0" prefWidth="178.0" />
                         <JFXButton fx:id="btnEndIm" layoutX="402.0" layoutY="351.0" onMouseClicked="#endIm" style="-fx-background-color: #D41800;" textFill="WHITE" />
                      </children>
                   </AnchorPane>
